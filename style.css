@@ -40,3 +40,15 @@ h1 {
   technique is commonly used to center images horizontally and vertically, especially when their sizes are dynamic or unknown. achieves precise centering regardless of element's dimensions. */
   transform: translate(-50%, -50%);
 }
+
+/* Image Container */
+.image-container {
+  /* margin values correspond to top, right, bottom, and left. 10px represents top and bottom margins here (vertical margins), 30% represents right and left (horizontal margins).
+  percentage value means actual size of margins will be relative to the width of the containing element/block: */
+  margin: 10px 30%;
+}
+
+.image-container img {
+  width: 100%;
+  margin-top: 5px;
+}
