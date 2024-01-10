@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 html {
   box-sizing: border-box;
@@ -6,4 +7,36 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: Bebas Neue, sans-serif;
+  background: whitesmoke;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: 5px;
+}
+
+/* Loader */
+.loader {
+  /* fixed position because we don't want it to move even if the user is scrolling on the page: */
+  position: fixed;
+  /* top, bottom, left, and right values cause the loader background to extend across the entire page (covering the title as well): */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.loader img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* "transform" centers the image within its container (top and left alone do not achieve perfect centering):
+  (effectively, this moves the element up and to the left by half of its own width and height).
+  technique is commonly used to center images horizontally and vertically, especially when their sizes are dynamic or unknown. achieves precise centering regardless of element's dimensions. */
+  transform: translate(-50%, -50%);
 }
