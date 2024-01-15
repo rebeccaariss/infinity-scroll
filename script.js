@@ -1,14 +1,18 @@
 import config from './config.js';
 
-// Unsplash API
+// API documentation for HTTP Authorization header method (see "headers," below):
+// https://unsplash.com/documentation#authorization
+
 const count = 10;
-const { apiKey } = config;
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
+const apiUrl = 'https://api.unsplash.com/photos/random/';
+const headers = {
+  Authorization: `Client-ID ${config.apiKey}`,
+};
 
 // Get photos from Unsplash API
 async function getPhotos() {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl + `?count=${count}`, { headers });
     const data = await response.json();
     console.log(data);
   } catch (error) {
