@@ -1,8 +1,8 @@
-import config from './config';
+import config from './config.js';
 
 // Unsplash API
 const count = 10;
-const apiKey = config.apiKey;
+const { apiKey } = config;
 const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
 
 // Get photos from Unsplash API
