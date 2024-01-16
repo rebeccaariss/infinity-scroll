@@ -14,20 +14,31 @@ const headers = {
   Authorization: `Client-ID ${config.apiKey}`,
 };
 
+// Helper functoin to set attributes on DOM elements
+function setAttributes(element, attributes) {
+  for (const key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+}
+
 // Create elements for links & photos, add to DOM
 function displayPhotos() {
   // Run function for each object in photosArray
   photosArray.forEach((photo) => {
     // Create <a> to link to Unsplash
     const item = document.createElement('a');
-    item.setAttribute('href', photo.links.html); // links to image preview on Unsplash
-    item.setAttribute('target', '_blank');
+    setAttributes(item, {
+      href: photo.links.html, // links to image preview on Unsplash
+      target: '_blank',
+    });
 
     // Create <img> for photo
     const img = document.createElement('img');
-    img.setAttribute('src', photo.urls.regular); // source for displaying image
-    img.setAttribute('alt', photo.alt_description); // description provided by API
-    img.setAttribute('title', photo.alt_description);
+    setAttributes(img, {
+      src: photo.urls.regular, // source for displaying image
+      alt: photo.alt_description, // description provided by API
+      title: photo.alt_description,
+    });
 
     // Nest <img> inside <a>, then both inside imageContainer element
     item.appendChild(img);
