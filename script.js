@@ -14,7 +14,7 @@ const headers = {
   Authorization: `Client-ID ${config.apiKey}`,
 };
 
-// Helper functoin to set attributes on DOM elements
+// Helper function to set attributes on DOM elements
 function setAttributes(element, attributes) {
   for (const key in attributes) {
     element.setAttribute(key, attributes[key]);
@@ -56,6 +56,14 @@ async function getPhotos() {
     // Error handling here
   }
 }
+
+// Check to see if scrolling near bottom of the page, load more photos
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+    getPhotos();
+    console.log('load more');
+  }
+});
 
 // On load
 getPhotos();
