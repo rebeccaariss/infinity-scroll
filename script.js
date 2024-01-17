@@ -20,11 +20,10 @@ const headers = {
 // Check if all images were loaded
 function imageLoaded() {
   imagesLoaded++;
-  console.log(imagesLoaded);
 
   if (imagesLoaded === totalImages) {
     ready = true;
-    console.log('ready = ', ready);
+    loader.hidden = true;
   }
 }
 
@@ -39,7 +38,6 @@ function setAttributes(element, attributes) {
 function displayPhotos() {
   imagesLoaded = 0;
   totalImages = photosArray.length;
-  console.log('total images = ', totalImages);
 
   // Run function for each object in photosArray
   photosArray.forEach((photo) => {
