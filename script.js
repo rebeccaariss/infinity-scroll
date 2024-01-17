@@ -3,16 +3,30 @@ import config from './config.js';
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
 
+let ready = false;
+let imagesLoaded = 0;
+let totalImages = 0;
 let photosArray = [];
 
 // API documentation for HTTP Authorization header method (see "headers," below):
 // https://unsplash.com/documentation#authorization
 
-const count = 10;
+const count = 30;
 const apiUrl = 'https://api.unsplash.com/photos/random/';
 const headers = {
   Authorization: `Client-ID ${config.apiKey}`,
 };
+
+// Check if all images were loaded
+function imageLoaded() {
+  console.log('image loaded');
+  imagesLoaded++;
+
+  if (imagesLoaded === totalImages) {
+    ready = true;
+    console.log('ready = ', ready);
+  }
+}
 
 // Helper function to set attributes on DOM elements
 function setAttributes(element, attributes) {
@@ -23,6 +37,9 @@ function setAttributes(element, attributes) {
 
 // Create elements for links & photos, add to DOM
 function displayPhotos() {
+  totalImages = photosArray.length;
+  console.log('total images = ', totalImages);
+  
   // Run function for each object in photosArray
   photosArray.forEach((photo) => {
     // Create <a> to link to Unsplash
@@ -39,6 +56,9 @@ function displayPhotos() {
       alt: photo.alt_description, // description provided by API
       title: photo.alt_description,
     });
+
+    // Event listener: check when each is finished loading
+    img.addEventListener('load', imageLoaded);
 
     // Nest <img> inside <a>, then both inside imageContainer element
     item.appendChild(img);
