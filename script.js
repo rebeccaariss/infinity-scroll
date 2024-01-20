@@ -11,7 +11,7 @@ let photosArray = [];
 // API documentation for HTTP Authorization header method (see "headers," below):
 // https://unsplash.com/documentation#authorization
 
-const count = 30;
+let count = 5;
 const apiUrl = 'https://api.unsplash.com/photos/random/';
 const headers = {
   Authorization: `Client-ID ${config.apiKey}`,
@@ -24,6 +24,7 @@ function imageLoaded() {
   if (imagesLoaded === totalImages) {
     ready = true;
     loader.hidden = true;
+    count = 30;
   }
 }
 
@@ -36,7 +37,8 @@ function setAttributes(element, attributes) {
 
 // Create elements for links & photos, add to DOM
 function displayPhotos() {
-  imagesLoaded = 0;
+  imagesLoaded = 0; // this value needs to be reset here so that the imagesLoaded
+  // value does not exceed the count requested in Unsplash query params
   totalImages = photosArray.length;
 
   // Run function for each object in photosArray
